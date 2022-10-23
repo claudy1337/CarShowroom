@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CarShowroom.Windws;
+using CarShowroom.Data.Classes;
+using CarShowroom.Data.Model;
 
 namespace CarShowroom.Windws
 {
@@ -20,6 +22,7 @@ namespace CarShowroom.Windws
     /// </summary>
     public partial class Auth : Window
     {
+        public static Client Client;
         public Auth()
         {
             InitializeComponent();
@@ -47,9 +50,20 @@ namespace CarShowroom.Windws
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+            var getUser = UserDataBaseMethods.GetClient(txtLogin.Text, txtPassword.Text);
+            if (getUser!=null)
+            {
+                MainWindow mainWindow = new MainWindow(getUser);
+                MessageBox.Show($"welcome {getUser.Name}");
+                mainWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("не верные данные");
+                return;
+            }
+
         }
     }
 }

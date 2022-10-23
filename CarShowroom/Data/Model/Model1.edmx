@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CarShowroomModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BodyCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BrandCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdModelСar" Type="int" />
+          <Property Name="IdBody" Type="int" />
+          <Property Name="idTransmission" Type="int" />
+          <Property Name="isNew" Type="bit" />
+          <Property Name="idEngine" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="idDiler" Type="int" />
+          <Property Name="ReleaseDate" Type="date" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="idRole" Type="int" />
+        </EntityType>
+        <EntityType Name="Diler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Engine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HistoryTransaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrderCar" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="DataBuy" Type="date" />
+        </EntityType>
+        <EntityType Name="ImageCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image1" Type="image" />
+          <Property Name="Image2" Type="image" />
+          <Property Name="Image3" Type="image" />
+          <Property Name="Image4" Type="image" />
+          <Property Name="Image5" Type="image" />
+          <Property Name="idCar" Type="int" />
+        </EntityType>
+        <EntityType Name="ModelCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
+          <Property Name="idBrandCar" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCar" Type="int" />
+          <Property Name="idClient" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transmission">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Cars_BodyCar">
+          <End Role="BodyCar" Type="Self.BodyCar" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BodyCar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="IdBody" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Diler">
+          <End Role="Diler" Type="Self.Diler" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="idDiler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Engine">
+          <End Role="Engine" Type="Self.Engine" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Engine">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="idEngine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_ModelCar">
+          <End Role="ModelCar" Type="Self.ModelCar" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelCar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="IdModelСar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Transmission">
+          <End Role="Transmission" Type="Self.Transmission" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transmission">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="idTransmission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryTransaction_OrderCar">
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="0..1" />
+          <End Role="HistoryTransaction" Type="Self.HistoryTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderCar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HistoryTransaction">
+              <PropertyRef Name="idOrderCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageCar_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+          <End Role="ImageCar" Type="Self.ImageCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ImageCar">
+              <PropertyRef Name="idCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModelCar_BrandCar">
+          <End Role="BrandCar" Type="Self.BrandCar" Multiplicity="0..1" />
+          <End Role="ModelCar" Type="Self.ModelCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BrandCar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ModelCar">
+              <PropertyRef Name="idBrandCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderCar_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="idCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderCar_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище CarShowroomModelContainer">
+          <EntitySet Name="BodyCar" EntityType="Self.BodyCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BrandCar" EntityType="Self.BrandCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diler" EntityType="Self.Diler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Engine" EntityType="Self.Engine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryTransaction" EntityType="Self.HistoryTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageCar" EntityType="Self.ImageCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModelCar" EntityType="Self.ModelCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderCar" EntityType="Self.OrderCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transmission" EntityType="Self.Transmission" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cars_BodyCar" Association="Self.FK_Cars_BodyCar">
+            <End Role="BodyCar" EntitySet="BodyCar" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Diler" Association="Self.FK_Cars_Diler">
+            <End Role="Diler" EntitySet="Diler" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Engine" Association="Self.FK_Cars_Engine">
+            <End Role="Engine" EntitySet="Engine" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_ModelCar" Association="Self.FK_Cars_ModelCar">
+            <End Role="ModelCar" EntitySet="ModelCar" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Transmission" Association="Self.FK_Cars_Transmission">
+            <End Role="Transmission" EntitySet="Transmission" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Role" Association="Self.FK_Client_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryTransaction_OrderCar" Association="Self.FK_HistoryTransaction_OrderCar">
+            <End Role="OrderCar" EntitySet="OrderCar" />
+            <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageCar_Cars" Association="Self.FK_ImageCar_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="ImageCar" EntitySet="ImageCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModelCar_BrandCar" Association="Self.FK_ModelCar_BrandCar">
+            <End Role="BrandCar" EntitySet="BrandCar" />
+            <End Role="ModelCar" EntitySet="ModelCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderCar_Cars" Association="Self.FK_OrderCar_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="OrderCar" EntitySet="OrderCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderCar_Client" Association="Self.FK_OrderCar_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="OrderCar" EntitySet="OrderCar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarShowroomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BodyCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_BodyCar" FromRole="BodyCar" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="BrandCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ModelCar" Relationship="Self.FK_ModelCar_BrandCar" FromRole="BrandCar" ToRole="ModelCar" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdModelСar" Type="Int32" />
+          <Property Name="IdBody" Type="Int32" />
+          <Property Name="idTransmission" Type="Int32" />
+          <Property Name="isNew" Type="Boolean" />
+          <Property Name="idEngine" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="idDiler" Type="Int32" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="BodyCar" Relationship="Self.FK_Cars_BodyCar" FromRole="Cars" ToRole="BodyCar" />
+          <NavigationProperty Name="Diler" Relationship="Self.FK_Cars_Diler" FromRole="Cars" ToRole="Diler" />
+          <NavigationProperty Name="Engine" Relationship="Self.FK_Cars_Engine" FromRole="Cars" ToRole="Engine" />
+          <NavigationProperty Name="ModelCar" Relationship="Self.FK_Cars_ModelCar" FromRole="Cars" ToRole="ModelCar" />
+          <NavigationProperty Name="Transmission" Relationship="Self.FK_Cars_Transmission" FromRole="Cars" ToRole="Transmission" />
+          <NavigationProperty Name="ImageCar" Relationship="Self.FK_ImageCar_Cars" FromRole="Cars" ToRole="ImageCar" />
+          <NavigationProperty Name="OrderCar" Relationship="Self.FK_OrderCar_Cars" FromRole="Cars" ToRole="OrderCar" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idRole" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Client_Role" FromRole="Client" ToRole="Role" />
+          <NavigationProperty Name="OrderCar" Relationship="Self.FK_OrderCar_Client" FromRole="Client" ToRole="OrderCar" />
+        </EntityType>
+        <EntityType Name="Diler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Diler" FromRole="Diler" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="Engine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Engine" FromRole="Engine" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="HistoryTransaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrderCar" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="DataBuy" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="OrderCar" Relationship="Self.FK_HistoryTransaction_OrderCar" FromRole="HistoryTransaction" ToRole="OrderCar" />
+        </EntityType>
+        <EntityType Name="ImageCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image4" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image5" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="idCar" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_ImageCar_Cars" FromRole="ImageCar" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="ModelCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="idBrandCar" Type="Int32" />
+          <NavigationProperty Name="BrandCar" Relationship="Self.FK_ModelCar_BrandCar" FromRole="ModelCar" ToRole="BrandCar" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_ModelCar" FromRole="ModelCar" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="OrderCar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCar" Type="Int32" />
+          <Property Name="idClient" Type="Int32" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_OrderCar_Cars" FromRole="OrderCar" ToRole="Cars" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_OrderCar_Client" FromRole="OrderCar" ToRole="Client" />
+          <NavigationProperty Name="HistoryTransaction" Relationship="Self.FK_HistoryTransaction_OrderCar" FromRole="OrderCar" ToRole="HistoryTransaction" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Role" FromRole="Role" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transmission">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Transmission" FromRole="Transmission" ToRole="Cars" />
+        </EntityType>
+        <Association Name="FK_Cars_BodyCar">
+          <End Role="BodyCar" Type="Self.BodyCar" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BodyCar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="IdBody" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModelCar_BrandCar">
+          <End Role="BrandCar" Type="Self.BrandCar" Multiplicity="0..1" />
+          <End Role="ModelCar" Type="Self.ModelCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BrandCar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ModelCar">
+              <PropertyRef Name="idBrandCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Diler">
+          <End Role="Diler" Type="Self.Diler" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="idDiler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Engine">
+          <End Role="Engine" Type="Self.Engine" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Engine">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="idEngine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_ModelCar">
+          <End Role="ModelCar" Type="Self.ModelCar" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelCar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="IdModelСar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Transmission">
+          <End Role="Transmission" Type="Self.Transmission" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transmission">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="idTransmission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageCar_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+          <End Role="ImageCar" Type="Self.ImageCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ImageCar">
+              <PropertyRef Name="idCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderCar_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="idCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderCar_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="idClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryTransaction_OrderCar">
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="0..1" />
+          <End Role="HistoryTransaction" Type="Self.HistoryTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderCar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HistoryTransaction">
+              <PropertyRef Name="idOrderCar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarShowroomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BodyCar" EntityType="Self.BodyCar" />
+          <EntitySet Name="BrandCar" EntityType="Self.BrandCar" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Diler" EntityType="Self.Diler" />
+          <EntitySet Name="Engine" EntityType="Self.Engine" />
+          <EntitySet Name="HistoryTransaction" EntityType="Self.HistoryTransaction" />
+          <EntitySet Name="ImageCar" EntityType="Self.ImageCar" />
+          <EntitySet Name="ModelCar" EntityType="Self.ModelCar" />
+          <EntitySet Name="OrderCar" EntityType="Self.OrderCar" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Transmission" EntityType="Self.Transmission" />
+          <AssociationSet Name="FK_Cars_BodyCar" Association="Self.FK_Cars_BodyCar">
+            <End Role="BodyCar" EntitySet="BodyCar" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModelCar_BrandCar" Association="Self.FK_ModelCar_BrandCar">
+            <End Role="BrandCar" EntitySet="BrandCar" />
+            <End Role="ModelCar" EntitySet="ModelCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Diler" Association="Self.FK_Cars_Diler">
+            <End Role="Diler" EntitySet="Diler" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Engine" Association="Self.FK_Cars_Engine">
+            <End Role="Engine" EntitySet="Engine" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_ModelCar" Association="Self.FK_Cars_ModelCar">
+            <End Role="ModelCar" EntitySet="ModelCar" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Transmission" Association="Self.FK_Cars_Transmission">
+            <End Role="Transmission" EntitySet="Transmission" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageCar_Cars" Association="Self.FK_ImageCar_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="ImageCar" EntitySet="ImageCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderCar_Cars" Association="Self.FK_OrderCar_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="OrderCar" EntitySet="OrderCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Role" Association="Self.FK_Client_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderCar_Client" Association="Self.FK_OrderCar_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="OrderCar" EntitySet="OrderCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryTransaction_OrderCar" Association="Self.FK_HistoryTransaction_OrderCar">
+            <End Role="OrderCar" EntitySet="OrderCar" />
+            <End Role="HistoryTransaction" EntitySet="HistoryTransaction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CarShowroomModelContainer" CdmEntityContainer="CarShowroomEntities">
+          <EntitySetMapping Name="BodyCar">
+            <EntityTypeMapping TypeName="CarShowroomModel.BodyCar">
+              <MappingFragment StoreEntitySet="BodyCar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BrandCar">
+            <EntityTypeMapping TypeName="CarShowroomModel.BrandCar">
+              <MappingFragment StoreEntitySet="BrandCar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarShowroomModel.Cars">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="IdModelСar" ColumnName="IdModelСar" />
+                <ScalarProperty Name="IdBody" ColumnName="IdBody" />
+                <ScalarProperty Name="idTransmission" ColumnName="idTransmission" />
+                <ScalarProperty Name="isNew" ColumnName="isNew" />
+                <ScalarProperty Name="idEngine" ColumnName="idEngine" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="idDiler" ColumnName="idDiler" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="CarShowroomModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diler">
+            <EntityTypeMapping TypeName="CarShowroomModel.Diler">
+              <MappingFragment StoreEntitySet="Diler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Engine">
+            <EntityTypeMapping TypeName="CarShowroomModel.Engine">
+              <MappingFragment StoreEntitySet="Engine">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryTransaction">
+            <EntityTypeMapping TypeName="CarShowroomModel.HistoryTransaction">
+              <MappingFragment StoreEntitySet="HistoryTransaction">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idOrderCar" ColumnName="idOrderCar" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DataBuy" ColumnName="DataBuy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageCar">
+            <EntityTypeMapping TypeName="CarShowroomModel.ImageCar">
+              <MappingFragment StoreEntitySet="ImageCar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Image1" ColumnName="Image1" />
+                <ScalarProperty Name="Image2" ColumnName="Image2" />
+                <ScalarProperty Name="Image3" ColumnName="Image3" />
+                <ScalarProperty Name="Image4" ColumnName="Image4" />
+                <ScalarProperty Name="Image5" ColumnName="Image5" />
+                <ScalarProperty Name="idCar" ColumnName="idCar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModelCar">
+            <EntityTypeMapping TypeName="CarShowroomModel.ModelCar">
+              <MappingFragment StoreEntitySet="ModelCar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="idBrandCar" ColumnName="idBrandCar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderCar">
+            <EntityTypeMapping TypeName="CarShowroomModel.OrderCar">
+              <MappingFragment StoreEntitySet="OrderCar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idCar" ColumnName="idCar" />
+                <ScalarProperty Name="idClient" ColumnName="idClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="CarShowroomModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CarShowroomModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transmission">
+            <EntityTypeMapping TypeName="CarShowroomModel.Transmission">
+              <MappingFragment StoreEntitySet="Transmission">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

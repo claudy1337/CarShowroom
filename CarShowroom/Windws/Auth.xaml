@@ -27,9 +27,9 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="Login"/>
-                        <TextBox/>
+                        <TextBox x:Name="txtLogin"/>
                         <TextBlock Text="Password" Margin="0,15,0,0"/>
-                        <TextBox/>
+                        <TextBox x:Name="txtPassword"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <Button Content="Enter" x:Name="btnAuth" Click="btnAuth_Click"/>
