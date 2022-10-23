@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Common;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using CarShowroom.Data.Model;
+using Microsoft.Win32;
 
 namespace CarShowroom.Data.Classes
 {
@@ -49,7 +53,17 @@ namespace CarShowroom.Data.Classes
                 return;
             }
         }
-        public static void EditClient(Client oldClient, string name, string password)
+        public static void EditImageClient(Client oldClient)
+        {
+            var getuser = GetClient(oldClient.Login, oldClient.Password);
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog().GetValueOrDefault())
+            {
+                getuser.Image = File.ReadAllBytes(openFileDialog.FileName);
+            }
+            DBConnection.connection.SaveChanges();
+        }
+        public static void EditClient(Client oldClient, string name, string password, Image image)
         {
             var getuser = GetClient(oldClient.Login, oldClient.Password);
             getuser.Name= name;

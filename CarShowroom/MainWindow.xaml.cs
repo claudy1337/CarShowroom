@@ -68,7 +68,7 @@ namespace CarShowroom
         private void clAccount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             clColorSet();
-            fContainer.Navigate(new AccountPage());
+            fContainer.Navigate(new AccountPage(CurrentClient));
             clAccount.Foreground = Brushes.White;
         }
 

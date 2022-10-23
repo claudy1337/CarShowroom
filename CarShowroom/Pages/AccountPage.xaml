@@ -6,9 +6,30 @@
       xmlns:local="clr-namespace:CarShowroom.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="700"
-      Title="AccountPage">
+      Title="AccountPage"
+      FontFamily="Poppins"
+      xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
 
-    <Grid>
-        
-    </Grid>
+    <Border Margin="8">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Login" FontSize="20"/>
+                <TextBox x:Name="txtLogin" Margin="0,5,0,0" IsReadOnly="True"/>
+
+                <TextBlock Text="Name" FontSize="20" Margin="0,15,0,5"/>
+                <TextBox x:Name="txtName"/>
+
+                <TextBlock Margin="0,15,0,5" Text="Password" FontSize="20"/>
+                <TextBox x:Name="txtPassword"/>
+
+                <Button x:Name="btnEditAccount" Click="btnEditAccount_Click" Margin="0,30,0,0" Content="Edit"/>
+            </StackPanel>
+            <Image x:Name="imgAccount" MouseLeftButtonDown="imgAccount_MouseLeftButtonDown" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding Image}" Grid.Column="1" Margin="20"/>
+        </Grid>
+    </Border>
 </Page>
