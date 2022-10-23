@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,18 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CarShowroom.Data.Classes;
+using CarShowroom.Windws;
 
-namespace CarShowroom
+namespace CarShowroom.Windws
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Auth.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Auth : Window
     {
-        public MainWindow()
+        public Auth()
         {
             InitializeComponent();
         }
@@ -38,6 +36,20 @@ namespace CarShowroom
             {
                 return;
             }
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Registration registration = new Registration();
+            registration.Show();
+            this.Close();
+        }
+
+        private void btnAuth_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }
