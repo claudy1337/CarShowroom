@@ -40,7 +40,7 @@
 
 
             <Style TargetType="material:Card">
-                <Setter Property="Background" Value="White"/>
+                <Setter Property="Background" Value="#908282"/>
                 <Setter Property="Padding" Value="8"/>
                 <Setter Property="materialDesign:ShadowAssist.ShadowDepth" Value="Depth5"/>
                 <Setter Property="materialDesign:ShadowAssist.ShadowEdges" Value="All"/>
@@ -58,6 +58,8 @@
                 <Setter Property="Height" Value="45"/>
                 <Setter Property="IsEnabled" Value="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"/>
             </Style>
+
+            
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />

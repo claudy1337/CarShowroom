@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Classes\DilerDataBaseMethods.cs" />
     <Compile Include="Data\Classes\UserDataBaseMethods.cs" />
     <Compile Include="Data\Model\BodyCar.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -133,6 +134,9 @@
     <Compile Include="Pages\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddDilerPage.xaml.cs">
+      <DependentUpon>AddDilerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DilerPage.xaml.cs">
       <DependentUpon>DilerPage.xaml</DependentUpon>
     </Compile>
@@ -156,6 +160,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddDilerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -218,6 +226,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\default_diler.png" />
     <Resource Include="Resources\default_user.png" />
   </ItemGroup>
   <ItemGroup>

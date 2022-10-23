@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CarShowroom.Data.Classes;
+using CarShowroom.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,21 @@ namespace CarShowroom.Pages
     /// </summary>
     public partial class DilerPage : Page
     {
-        public DilerPage()
+        public static Client CurrentClient;
+        public DilerPage(Client currentClient)
         {
+            CurrentClient = currentClient;
             InitializeComponent();
+            if (UserDataBaseMethods.GetAdminRole(CurrentClient.Login) == false)
+            {
+                btnAddDiler.Visibility = Visibility.Hidden;
+            }
+            lstDiler.ItemsSource = DilerDataBaseMethods.GetDilers();
+        }
+
+        private void btnAddDiler_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddDilerPage(CurrentClient));
         }
     }
 }

@@ -82,7 +82,7 @@ namespace CarShowroom
         private void clDiler_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             clColorSet();
-            fContainer.Navigate(new DilerPage());
+            fContainer.Navigate(new DilerPage(CurrentClient));
             clDiler.Foreground = Brushes.White;
         }
 
