@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using CarShowroom.Data.Model;
 using Microsoft.Win32;
 
@@ -25,7 +26,7 @@ namespace CarShowroom.Data.Classes
         {
             return GetDiler().ToList();
         }
-        public static void AddDiler(string name, string address)
+        public static void AddDiler(string name, string address, Byte[] image)
         {
             var getDiler = GetDilers(name, address);
             if (getDiler == null)
@@ -33,10 +34,13 @@ namespace CarShowroom.Data.Classes
                 Diler diler = new Diler
                 {
                     Name = name,
-                    Address = address
+                    Address = address,
+                    Image = image
+                     
                 };
                 DBConnection.connection.Diler.Add(diler);
                 DBConnection.connection.SaveChanges();
+                MessageBox.Show("дилер успешно добавлен");
             }
             else
                 MessageBox.Show("данный дилер уже существует");

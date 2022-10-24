@@ -1,5 +1,6 @@
 ﻿using CarShowroom.Data.Classes;
 using CarShowroom.Data.Model;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,18 @@ namespace CarShowroom.Pages
         private void btnAddDiler_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddDilerPage(CurrentClient));
+        }
+
+        private void lstDiler_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectDiler = lstDiler.SelectedItem as Diler;
+            txtName.Text = selectDiler.Name;
+            txtAddress.Text = selectDiler.Address;
+            txtCountCarAvailable.Text = "Count Сars Available: ";
+            txtCountOfSolid.Text = "Count of Sold: ";
+            txtAverageCarPrice.Text = "Average Car Price: ";
+            this.DataContext = selectDiler;
+
         }
     }
 }

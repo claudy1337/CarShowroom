@@ -23,7 +23,7 @@
                         <RowDefinition Height="300"/>
                         <RowDefinition Height="80"/>
                     </Grid.RowDefinitions>
-                    <ListView x:Name="lstDiler" Grid.Row="0" HorizontalAlignment="Center" Height="320" Width="220">
+                    <ListView x:Name="lstDiler" Grid.Row="0" HorizontalAlignment="Center" Height="320" Width="220" SelectionChanged="lstDiler_SelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Width="200">
@@ -47,21 +47,32 @@
             <StackPanel Grid.Column="1">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="155"/>
                         <RowDefinition Height="250"/>
+                        <RowDefinition Height="150"/>
                     </Grid.RowDefinitions>
                     <materialDesign:Card x:Name="cardInformationDiler" Grid.Row="0" Margin="15">
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="0">
-                            <TextBlock x:Name="txtName" Text="Name" FontSize="25" Margin="0,12,0,0" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="txtAddress" Text="Address" FontSize="25" Margin="0,12,0,12" HorizontalAlignment="Center" />
+                        <StackPanel Grid.Column="0">
+                            <Grid Height="200">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding Image}" x:Name="imgLogoDiler" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                                    <TextBlock x:Name="txtName" FontSize="25" Margin="0,12,0,0" HorizontalAlignment="Center" />
+                                    <TextBlock x:Name="txtAddress" FontSize="25" Margin="0,12,0,12" HorizontalAlignment="Center" />
+                                    
+                                </StackPanel>
+                            </Grid>
+                           
                         </StackPanel>
                     </materialDesign:Card>
 
                     <materialDesign:Card x:Name="cardAddDiler" Grid.Row="1" Margin="15">
                         <StackPanel Orientation="Vertical" Margin="8" VerticalAlignment="Center">
-                            <TextBlock Text="Count Сars Available: " FontSize="20"/>
-                            <TextBlock Text="Count of Sold: " FontSize="20" Margin="0,12,0,12"/>
-                            <TextBlock Text="Average Car Price: " FontSize="20"/>
+                            <TextBlock x:Name="txtCountCarAvailable" FontSize="20"/>
+                            <TextBlock x:Name="txtCountOfSolid" FontSize="20"/>
+                            <TextBlock x:Name="txtAverageCarPrice" FontSize="20"/>
                         </StackPanel>
                     </materialDesign:Card>
                 </Grid>

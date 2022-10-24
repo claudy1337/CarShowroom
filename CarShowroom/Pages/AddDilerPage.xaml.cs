@@ -1,7 +1,9 @@
 ﻿using CarShowroom.Data.Classes;
 using CarShowroom.Data.Model;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CarShowroom.Pages
 {
@@ -23,6 +26,7 @@ namespace CarShowroom.Pages
     public partial class AddDilerPage : Page
     {
         public static Client CurrentClient;
+        byte[] image;
         public AddDilerPage(Client currentClient)
         {
             CurrentClient = currentClient;
@@ -38,8 +42,13 @@ namespace CarShowroom.Pages
             }
             else
             {
-                DilerDataBaseMethods.AddDiler(txtName.Text, txtAddress.Text);
-                MessageBox.Show("Дилер успешно добавлен");
+                if (image == null)
+                {
+                    MessageBox.Show("выберите изображение");
+                }
+                else
+                    DilerDataBaseMethods.AddDiler(txtName.Text, txtAddress.Text, image);
+
             }
             
         }
@@ -51,12 +60,18 @@ namespace CarShowroom.Pages
 
         private void imgDiler_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Diler diler = new Diler
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FilterIndex = 1;
+            if (ofd.ShowDialog() == true)
             {
-                Address = txtAddress.Text,
-                Name = txtName.Text
-            };
-            DilerDataBaseMethods.AddImageDiler(diler);
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(ofd.FileName);
+                bitmapImage.EndInit();
+                imgDiler.Source = bitmapImage;
+                image = File.ReadAllBytes(ofd.FileName);
+            }
+            
         }
     }
 }
