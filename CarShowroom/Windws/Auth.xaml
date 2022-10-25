@@ -10,8 +10,15 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         FontFamily="Poppins"
+        Background="#252525"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+        </Style>
+    </Window.Resources>
     <Border>
         <Grid>
             <Grid.RowDefinitions>
@@ -32,7 +39,7 @@
                         <TextBox x:Name="txtPassword"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <Button Content="Enter" x:Name="btnAuth" Click="btnAuth_Click"/>
+                        <Button Foreground="White" Content="Enter" x:Name="btnAuth" Click="btnAuth_Click"/>
                         <TextBlock Text="Dont Have Account" HorizontalAlignment="Right" Margin="0,5,0,0" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
                     </StackPanel>
                 </Grid>

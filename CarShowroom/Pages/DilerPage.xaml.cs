@@ -33,6 +33,7 @@ namespace CarShowroom.Pages
                 btnAddDiler.Visibility = Visibility.Hidden;
             }
             lstDiler.ItemsSource = DilerDataBaseMethods.GetDilers();
+            
         }
 
         private void btnAddDiler_Click(object sender, RoutedEventArgs e)

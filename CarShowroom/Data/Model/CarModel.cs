@@ -12,17 +12,17 @@ namespace CarShowroom.Data.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ModelCar
+    public partial class CarModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ModelCar()
+        public CarModel()
         {
             this.Cars = new HashSet<Cars>();
         }
     
         public int id { get; set; }
-        public string Name { get; set; }
         public Nullable<int> idBrandCar { get; set; }
+        public string Name { get; set; }
     
         public virtual BrandCar BrandCar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

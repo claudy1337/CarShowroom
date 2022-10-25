@@ -13,22 +13,22 @@
         <EntityTypeShape EntityType="CarShowroomModel.Engine" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CarShowroomModel.HistoryTransaction" Width="1.5" PointX="12.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CarShowroomModel.ImageCar" Width="1.5" PointX="7.5" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShowroomModel.ModelCar" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CarShowroomModel.OrderCar" Width="1.5" PointX="10.5" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CarShowroomModel.Role" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="CarShowroomModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CarShowroomModel.Transmission" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
         <AssociationConnector Association="CarShowroomModel.FK_Cars_BodyCar" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShowroomModel.FK_ModelCar_BrandCar" ManuallyRouted="false" />
         <AssociationConnector Association="CarShowroomModel.FK_Cars_Diler" ManuallyRouted="false" />
         <AssociationConnector Association="CarShowroomModel.FK_Cars_Engine" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShowroomModel.FK_Cars_ModelCar" ManuallyRouted="false" />
         <AssociationConnector Association="CarShowroomModel.FK_Cars_Transmission" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShowroomModel.FK_ImageCar_Cars" ManuallyRouted="false" />
         <AssociationConnector Association="CarShowroomModel.FK_OrderCar_Cars" ManuallyRouted="false" />
         <AssociationConnector Association="CarShowroomModel.FK_Client_Role" ManuallyRouted="false" />
         <AssociationConnector Association="CarShowroomModel.FK_OrderCar_Client" ManuallyRouted="false" />
         <AssociationConnector Association="CarShowroomModel.FK_HistoryTransaction_OrderCar" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CarShowroomModel.CarModel" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="CarShowroomModel.FK_CarModel_BrandCar" />
+        <AssociationConnector Association="CarShowroomModel.FK_Cars_CarModel" />
+        <AssociationConnector Association="CarShowroomModel.FK_Cars_ImageCar" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

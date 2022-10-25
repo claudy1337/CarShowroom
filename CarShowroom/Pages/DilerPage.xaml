@@ -10,7 +10,12 @@
       FontFamily="Poppins"
       xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+        </Style>
+    </Page.Resources>
     <Border>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -33,14 +38,14 @@
                                     </Grid.RowDefinitions>
                                     <Image Height="150" Width="125" Source="{Binding Image}" Grid.Row="0" Margin="5" RenderOptions.BitmapScalingMode="HighQuality"/>
                                     <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <TextBlock FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center"/>
-                                        <TextBlock FontSize="20" Text="{Binding Address}" HorizontalAlignment="Center"/>
+                                        <TextBlock Foreground="White" FontSize="20" Text="{Binding Name}" HorizontalAlignment="Center"/>
+                                        <TextBlock Foreground="White" FontSize="20" Text="{Binding Address}" HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Button Grid.Row="1" Content="Add" x:Name="btnAddDiler" Click="btnAddDiler_Click"/>
+                    <Button Foreground="White" Grid.Row="1" Content="Add" x:Name="btnAddDiler" Click="btnAddDiler_Click"/>
                 </Grid>
             </StackPanel>
 

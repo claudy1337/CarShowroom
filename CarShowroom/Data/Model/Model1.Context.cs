@@ -33,10 +33,10 @@ namespace CarShowroom.Data.Model
         public virtual DbSet<Engine> Engine { get; set; }
         public virtual DbSet<HistoryTransaction> HistoryTransaction { get; set; }
         public virtual DbSet<ImageCar> ImageCar { get; set; }
-        public virtual DbSet<ModelCar> ModelCar { get; set; }
         public virtual DbSet<OrderCar> OrderCar { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Transmission> Transmission { get; set; }
+        public virtual DbSet<CarModel> CarModel { get; set; }
     }
 }

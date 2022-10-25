@@ -50,6 +50,7 @@ namespace CarShowroom.Pages
                     DilerDataBaseMethods.AddDiler(txtName.Text, txtAddress.Text, image);
 
             }
+            NavigationService.Navigate(new DilerPage(CurrentClient));
             
         }
 

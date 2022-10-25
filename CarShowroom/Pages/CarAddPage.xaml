@@ -1,0 +1,46 @@
+﻿<Page x:Class="CarShowroom.Pages.CarAddPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarShowroom.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="700"
+      Title="CarAddPage"
+      FontFamily="Poppins">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+        </Style>
+    </Page.Resources>
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="10">
+                <Grid Height="380">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="/Resources/default_car.png" x:Name="imgUpload1" Grid.Column="0" Grid.Row="0" MouseLeftButtonDown="imgUpload1_MouseLeftButtonDown"/>
+                    <Image Source="/Resources/default_car.png" x:Name="imgUpload2" Grid.Column="1" Grid.Row="0" MouseLeftButtonDown="imgUpload2_MouseLeftButtonDown"/>
+                    <Image Source="/Resources/default_car.png" x:Name="imgUpload3" Grid.Column="0" Grid.Row="1" MouseLeftButtonDown="imgUpload3_MouseLeftButtonDown"/>
+                    <Image Source="/Resources/default_car.png" x:Name="imgUpload4" Grid.Column="1" Grid.Row="1" MouseLeftButtonDown="imgUpload4_MouseLeftButtonDown"/>
+                </Grid>
+                
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="8">
+                <TextBox x:Name="tbDescription"/>
+                <Button Foreground="White" Content="Add" x:Name="btnAddCar" Click="btnAddCar_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Page>

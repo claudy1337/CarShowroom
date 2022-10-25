@@ -17,7 +17,6 @@ namespace CarShowroom.Data.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cars()
         {
-            this.ImageCar = new HashSet<ImageCar>();
             this.OrderCar = new HashSet<OrderCar>();
         }
     
@@ -29,17 +28,18 @@ namespace CarShowroom.Data.Model
         public Nullable<int> idEngine { get; set; }
         public Nullable<int> Price { get; set; }
         public Nullable<int> idDiler { get; set; }
-        public Nullable<System.DateTime> ReleaseDate { get; set; }
-        public Nullable<int> Count { get; set; }
+        public Nullable<int> idImage { get; set; }
+        public string Color { get; set; }
+        public Nullable<int> Date { get; set; }
+        public Nullable<bool> isBuy { get; set; }
     
         public virtual BodyCar BodyCar { get; set; }
         public virtual Diler Diler { get; set; }
         public virtual Engine Engine { get; set; }
-        public virtual ModelCar ModelCar { get; set; }
         public virtual Transmission Transmission { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ImageCar> ImageCar { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderCar> OrderCar { get; set; }
+        public virtual CarModel CarModel { get; set; }
+        public virtual ImageCar ImageCar { get; set; }
     }
 }

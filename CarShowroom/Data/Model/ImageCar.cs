@@ -14,14 +14,20 @@ namespace CarShowroom.Data.Model
     
     public partial class ImageCar
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ImageCar()
+        {
+            this.Cars = new HashSet<Cars>();
+        }
+    
         public int id { get; set; }
         public byte[] Image1 { get; set; }
         public byte[] Image2 { get; set; }
         public byte[] Image3 { get; set; }
         public byte[] Image4 { get; set; }
-        public byte[] Image5 { get; set; }
-        public Nullable<int> idCar { get; set; }
+        public string Description { get; set; }
     
-        public virtual Cars Cars { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cars> Cars { get; set; }
     }
 }

@@ -7,46 +7,80 @@
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="700"
       Title="CarShowRoom"
+      FontFamily="Poppins"
       xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="10">
+            <TextBlock Foreground="White" Text="Brand" FontSize="22"/>
+            <ComboBox SelectionChanged="cbdBrand_SelectionChanged" x:Name="cbdBrand" DisplayMemberPath="Name" Height="35">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="BorderBrush" Value="White"/>
+                        <Setter Property="Background" Value="#908282"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
 
-    <Border>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="220"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <material:Card Grid.Column="0" Margin="10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="100"/>
-                    </Grid.RowDefinitions>
-                    <Button Grid.Row="1" Width="150" Content="Add"/>
-                </Grid>
-            </material:Card>
-            <ListView Grid.Column="1" Margin="10" HorizontalAlignment="Center" x:Name="lstvCar" SelectionChanged="lstvCar_SelectionChanged">
-                <Grid Width="425">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="250"/>
-                        <RowDefinition Height="100"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                        <Grid Height="250">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="/Resources/default_car.png" Grid.Column="0" RenderOptions.BitmapScalingMode="HighQuality"/>
-                            <Image Source="/Resources/default_car.png" Grid.Column="1" RenderOptions.BitmapScalingMode="HighQuality"/>
-                        </Grid>
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" VerticalAlignment="Center">
-                        <TextBlock Text="Name" FontSize="25"/>
-                        <TextBlock Text="Name" FontSize="25"/>
-                        <TextBlock Text="Name" FontSize="25"/>
-                    </StackPanel>
-                </Grid>
-            </ListView>
-        </Grid>
-    </Border>
+
+            <TextBlock Foreground="White" Text="Body" FontSize="22"/>
+            <ComboBox SelectionChanged="cbBody_SelectionChanged" x:Name="cbBody" DisplayMemberPath="Name" Height="35">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="BorderBrush" Value="White"/>
+                        <Setter Property="Background" Value="#908282"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+
+            <TextBlock Text="Diler" Foreground="White" FontSize="22"/>
+            <ComboBox SelectionChanged="cbDiler_SelectionChanged"  x:Name="cbDiler" DisplayMemberPath="Name" Height="35">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="BorderBrush" Value="White"/>
+                        <Setter Property="Background" Value="#908282"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
+
+            <Button x:Name="btnAddCar" Click="btnAddCar_Click" Content="Add" Foreground="White" Margin="0,22,0,0"/>
+            <TextBlock x:Name="txtClear" MouseLeftButtonDown="txtClear_MouseLeftButtonDown" Text="Clear" FontSize="15" HorizontalAlignment="Right" Foreground="White"/>
+        </StackPanel>
+        <ListView Grid.Column="1" Margin="10" HorizontalAlignment="Center" x:Name="lstvCar" SelectionChanged="lstvCar_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="425">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="250"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <Grid Height="250">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding ImageCar.Image1}" Grid.Column="0" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <Image Source="{Binding ImageCar.Image2}" Grid.Column="1" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock Foreground="White" Text="{Binding CarModel.Name}" FontSize="25"/>
+                            <TextBlock Foreground="White" Text="{Binding CarModel.BrandCar.Name}" FontSize="25"/>
+                            <TextBlock Foreground="White" Text="{Binding Year}" FontSize="25"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </Page>

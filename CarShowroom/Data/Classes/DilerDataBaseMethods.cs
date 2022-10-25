@@ -45,16 +45,6 @@ namespace CarShowroom.Data.Classes
             else
                 MessageBox.Show("данный дилер уже существует");
         }
-        public static void AddImageDiler(Diler diler)
-        {
-            var getdiler = GetDilers(diler.Name, diler.Address);
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog().GetValueOrDefault())
-            {
-                getdiler.Image = File.ReadAllBytes(openFileDialog.FileName);
-            }
-            DBConnection.connection.SaveChanges();
-        }
         public static void EditDiler(Diler oldDiler, string name, string address)
         {
             var getDiler = GetDilers(oldDiler.Name, oldDiler.Address);
@@ -65,5 +55,6 @@ namespace CarShowroom.Data.Classes
                 DBConnection.connection.SaveChanges();
             }
         }
+        
     }
 }

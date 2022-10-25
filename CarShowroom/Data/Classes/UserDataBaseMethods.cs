@@ -17,12 +17,6 @@ namespace CarShowroom.Data.Classes
     internal class UserDataBaseMethods
     {
         public static Client CurrentUser;
-        public static bool IsCorrectClient(string login, string password)
-        {
-            ObservableCollection<Client> user = new ObservableCollection<Client>(DBConnection.connection.Client);
-            var currentUser = user.Where(u => u.Login == login && u.Password == password).FirstOrDefault();
-            return currentUser != null;
-        }
         public static ObservableCollection<Client> GetClients()
         {
             return new ObservableCollection<Client>(DBConnection.connection.Client);

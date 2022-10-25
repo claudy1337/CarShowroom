@@ -16,7 +16,6 @@ namespace CarShowroom.Data.Model
     {
         public int id { get; set; }
         public Nullable<int> idOrderCar { get; set; }
-        public Nullable<int> Price { get; set; }
         public Nullable<System.DateTime> DataBuy { get; set; }
     
         public virtual OrderCar OrderCar { get; set; }

@@ -7,8 +7,43 @@
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="700"
       Title="InformationCarPage">
-
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+        </Style>
+    </Page.Resources>
     <Border>
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image Grid.Column="0" Grid.Row="0" Margin="10" x:Name="imgCar" MouseLeftButtonDown="imgCar_MouseLeftButtonDown"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
+                <TextBlock Text="Car Information" HorizontalAlignment="Center" FontSize="25"/>
+                <TextBlock x:Name="txtBrand" Text="Brand: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtModel" Text="Model: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtColor" Text="Color: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtEngine" Text="Engine: " FontSize="20" Margin="0,3,0,0"/>
+                
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
+                <TextBlock x:Name="txtTransmission" Text="Transmission: " FontSize="20" Margin="0,6,0,0"/>
+                <TextBlock x:Name="txtBody" Text="Body:" FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtIsNew" Text="Is New: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtYear" Text="Year: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtDiler" Text="Diler: " FontSize="20" Margin="0,3,0,0" MouseLeftButtonDown="txtDiler_MouseLeftButtonDown"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock x:Name="txtPrice" Text="Price: " FontSize="25"/>
+                <Button x:Name="btnBuy" Click="btnBuy_Click" Foreground="White" Margin="0,15,0,5" HorizontalAlignment="Center" Content="Buy"/>
+                <TextBlock x:Name="btnBack" MouseLeftButtonDown="btnBack_MouseLeftButtonDown" Text="Back" FontSize="15" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </Grid>
     </Border>
 </Page>

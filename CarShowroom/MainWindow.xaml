@@ -10,6 +10,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         FontFamily="Poppins"
+        Background="#252525"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes">
