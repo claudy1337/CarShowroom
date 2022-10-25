@@ -34,7 +34,6 @@ namespace CarShowroom
             if (UserDataBaseMethods.GetAdminRole(CurrentClient.Login) == false)
             {
                 clTransaction.Visibility = Visibility.Hidden;
-                clHistory.Visibility = Visibility.Hidden;
             }
         }
 
@@ -54,7 +53,7 @@ namespace CarShowroom
         private void clTransaction_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             clColorSet();
-
+            fContainer.Navigate(new TransactionPage(CurrentClient));
             clTransaction.Foreground = Brushes.White; 
         }
 
@@ -86,17 +85,10 @@ namespace CarShowroom
             clDiler.Foreground = Brushes.White;
         }
 
-        private void clHistory_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            clColorSet();
-
-            clHistory.Foreground = Brushes.White;
-        }
         public void clColorSet()
         {
             clDiler.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(144, 130, 130));
             clAccount.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(144, 130, 130));
-            clHistory.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(144, 130, 130));
             clOrderCars.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(144, 130, 130));
             clTransaction.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(144, 130, 130));
             clCarShowRoom.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(144, 130, 130));

@@ -115,6 +115,10 @@ namespace CarShowroom.Data.Classes
         {
             return new ObservableCollection<ImageCar>(DBConnection.connection.ImageCar);
         }
+        public static List<ImageCar> GetImages(Cars cars)
+        {
+            return GetImage().Where(i=>i.id == cars.idImage).ToList();
+        }
         public static ImageCar GetImages(string description)
         {
             return GetImage().FirstOrDefault(i => i.Description == description);

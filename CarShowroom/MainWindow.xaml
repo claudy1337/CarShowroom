@@ -33,7 +33,7 @@
                 <TextBlock x:Name="clOrderCars" MouseLeftButtonDown="clOrderCars_MouseLeftButtonDown" Text="Order Cars" Margin="20,0,20,0" FontSize="20" Foreground="#908282"/>
                 <TextBlock x:Name="clDiler" MouseLeftButtonDown="clDiler_MouseLeftButtonDown" Text="Diler" FontSize="20" Foreground="#908282"/>
                 <TextBlock x:Name="clExit" MouseLeftButtonDown="clExit_MouseLeftButtonDown" Text="Exit" FontSize="20" Margin="20,0,20,0" Foreground="#908282"/>
-                <TextBlock x:Name="clHistory" MouseLeftButtonDown="clHistory_MouseLeftButtonDown" Text="History" FontSize="20" Foreground="#908282"/>
+              
             </StackPanel>
             <Frame Grid.Row="2" Margin="10"
                Name="fContainer"

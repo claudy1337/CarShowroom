@@ -24,19 +24,24 @@ namespace CarShowroom.Pages
     {
         public static Client CurrentClient;
         public static Cars Cars;
-        List imageList = new List();
+        int listsize = 0;
+        int size;
+        List<byte[]> image;
         public InformationCarPage(Client currentClient, Cars cars)
         {
             CurrentClient = currentClient;
             Cars = cars;
             InitializeComponent();
             BindingDataCars();
+            
         }
 
         private void imgCar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+           
         }
+       
         public void BindingDataCars()
         {
             txtPrice.Text = "Price: " + Cars.Price;
@@ -49,10 +54,17 @@ namespace CarShowroom.Pages
             txtColor.Text = "Color: " + Cars.Color;
             txtBody.Text = "Body: " + Cars.BodyCar.Name;
             txtDiler.Text = "Diler: " + Cars.Diler.Name;
-            //foreach (var item in imageList)
-            //{
-
-            //}
+            image = new List<byte[]>();
+            
+            foreach (var i in CarDataBaseMethods.GetImages(Cars))
+            {
+                image.Add(i.Image1);
+                image.Add(i.Image2);
+                image.Add(i.Image3);
+                image.Add(i.Image4);
+            }
+            size = image.Count();
+            this.DataContext = Cars.ImageCar;
         }
 
         private void txtDiler_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -69,5 +81,6 @@ namespace CarShowroom.Pages
         {
             NavigationService.Navigate(new CarShowRoom(CurrentClient));
         }
+
     }
 }

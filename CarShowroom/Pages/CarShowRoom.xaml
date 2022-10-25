@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="10">
             <TextBlock Foreground="White" Text="Brand" FontSize="22"/>
-            <ComboBox SelectionChanged="cbdBrand_SelectionChanged" x:Name="cbdBrand" DisplayMemberPath="Name" Height="35">
+            <ComboBox SelectionChanged="cbdBrand_SelectionChanged" x:Name="cbdBrand" DisplayMemberPath="Name" Height="40">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="ComboBoxItem">
                         <Setter Property="BorderBrush" Value="White"/>
@@ -33,7 +33,7 @@
 
 
             <TextBlock Foreground="White" Text="Body" FontSize="22"/>
-            <ComboBox SelectionChanged="cbBody_SelectionChanged" x:Name="cbBody" DisplayMemberPath="Name" Height="35">
+            <ComboBox SelectionChanged="cbBody_SelectionChanged" x:Name="cbBody" DisplayMemberPath="Name" Height="40">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="ComboBoxItem">
                         <Setter Property="BorderBrush" Value="White"/>
@@ -43,7 +43,7 @@
             </ComboBox>
 
             <TextBlock Text="Diler" Foreground="White" FontSize="22"/>
-            <ComboBox SelectionChanged="cbDiler_SelectionChanged"  x:Name="cbDiler" DisplayMemberPath="Name" Height="35">
+            <ComboBox SelectionChanged="cbDiler_SelectionChanged"  x:Name="cbDiler" DisplayMemberPath="Name" Height="40">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="ComboBoxItem">
                         <Setter Property="BorderBrush" Value="White"/>
