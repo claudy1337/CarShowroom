@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using CarShowroom.Data.Classes;
 using CarShowroom.Data.Model;
@@ -40,6 +41,10 @@ namespace CarShowroom.Data.Classes
             return GetAllCars().Where(c => c.IdBody == body.id && c.idDiler == diler.id && c.CarModel.BrandCar.id == brandCar.id).ToList();
         }
 
+        public static IEnumerable<CarModel> GetCarsModels(BrandCar brand)
+        {
+            return GetCarModel().Where(c => c.idBrandCar == brand.id).ToList();
+        }
 
 
         public static IEnumerable<Cars> GetCarsBrands(BrandCar brand)
@@ -86,17 +91,35 @@ namespace CarShowroom.Data.Classes
 
         public static void AddImageCar(byte[] image1, byte[] image2, byte[] image3, byte[] image4 ,string description)
         {
-            ImageCar imageCar = new ImageCar()
+            var getimage = GetImages(description);
+            if (getimage == null)
             {
-                Image1 = image1,
-                Image2 = image2,
-                Image3 = image3,
-                Image4 = image4,
-                Description = description
-            };
-            DBConnection.connection.ImageCar.Add(imageCar);
-            DBConnection.connection.SaveChanges();
+                ImageCar imageCar = new ImageCar()
+                {
+                    Image1 = image1,
+                    Image2 = image2,
+                    Image3 = image3,
+                    Image4 = image4,
+                    Description = description
+                };
+                DBConnection.connection.ImageCar.Add(imageCar);
+                DBConnection.connection.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("уже есть");
+            }
+            
         }
+        public static ObservableCollection<ImageCar> GetImage()
+        {
+            return new ObservableCollection<ImageCar>(DBConnection.connection.ImageCar);
+        }
+        public static ImageCar GetImages(string description)
+        {
+            return GetImage().FirstOrDefault(i => i.Description == description);
+        }
+
         public static void EditCar(Cars cars)
         {
             var getCar = GetCars(cars);
@@ -105,6 +128,26 @@ namespace CarShowroom.Data.Classes
                 getCar.isBuy = true;
                 DBConnection.connection.SaveChanges();
             }
+        }
+        public static void AddCar(CarModel carModel, BodyCar bodyCar, Transmission transmission, bool isNew, Engine engine, int price, Diler diler, int IdImage, string color, int date, ImageCar imageCar)
+        {
+            Cars cars = new Cars
+            {
+                IdModelСar = carModel.id,
+                IdBody = bodyCar.id,
+                idTransmission = transmission.id,
+                isNew = isNew,
+                idEngine = engine.id,
+                Price = price,
+                idDiler = diler.id, 
+                Color = color, 
+                Date = date,
+                idImage = imageCar.id,
+                isBuy = false
+            };
+            DBConnection.connection.Cars.Add(cars);
+            DBConnection.connection.SaveChanges();
+            MessageBox.Show("машина добавлена");
         }
 
         

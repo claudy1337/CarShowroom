@@ -55,6 +55,19 @@ namespace CarShowroom.Data.Classes
                 DBConnection.connection.SaveChanges();
             }
         }
+        public static IEnumerable<OrderCar> OrderCarsofDiler(Diler diler)
+        {
+            return OrderCarDataBaseMethods.GetOrderCar().Where(d=>d.Cars.Diler.id == diler.id).ToList();
+        }
         
+        public static void AverageCarPrice(Diler diler)
+        {
+            int price = 0;
+            var getCarDiler = CarDataBaseMethods.GetCarsDiler(diler);
+            int countCar = getCarDiler.Count();
+            //foreach(получить цену всех машин дилера)
+            
+        }
+
     }
 }

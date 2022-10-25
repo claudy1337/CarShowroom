@@ -46,10 +46,11 @@ namespace CarShowroom.Pages
             var selectDiler = lstDiler.SelectedItem as Diler;
             txtName.Text = selectDiler.Name;
             txtAddress.Text = selectDiler.Address;
-            txtCountCarAvailable.Text = "Count Сars Available: ";
-            txtCountOfSolid.Text = "Count of Sold: ";
-            txtAverageCarPrice.Text = "Average Car Price: ";
+            txtCountCarAvailable.Text = "В Наличии: " + CarDataBaseMethods.GetCarsDiler(selectDiler).Count();
+            txtCountOfSolid.Text = "Проданно: " + DilerDataBaseMethods.OrderCarsofDiler(selectDiler).Count();
+            //txtAverageCarPrice.Text = "Средняя цена: " + DilerDataBaseMethods.OrderCarsofDiler(selectDiler);
             this.DataContext = selectDiler;
+            
 
         }
     }

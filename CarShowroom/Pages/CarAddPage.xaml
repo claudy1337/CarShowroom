@@ -8,12 +8,6 @@
       d:DesignHeight="400" d:DesignWidth="700"
       Title="CarAddPage"
       FontFamily="Poppins">
-    <Page.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Poppins"/>
-        </Style>
-    </Page.Resources>
     <Border>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -37,10 +31,87 @@
                 </Grid>
                 
             </StackPanel>
-            <StackPanel Grid.Column="1" Margin="8">
-                <TextBox x:Name="tbDescription"/>
-                <Button Foreground="White" Content="Add" x:Name="btnAddCar" Click="btnAddCar_Click"/>
+            <StackPanel Grid.Column="1" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Brand" Foreground="White" FontSize="15" Margin="0,10,0,0"/>
+                        <ComboBox SelectionChanged="cbBrandCar_SelectionChanged" x:Name="cbBrandCar" DisplayMemberPath="Name" Height="35">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Background" Value="#908282"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                        <TextBlock Text="Model" Foreground="White" FontSize="15"/>
+                        <ComboBox x:Name="cbModelCar" DisplayMemberPath="Name" Height="35" >
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Background" Value="#908282"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                        
+
+                        <TextBlock Text="Body" Foreground="White" FontSize="15"/>
+                        <ComboBox x:Name="cbBodyCar" DisplayMemberPath="Name" Height="35">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Background" Value="#908282"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                        <TextBlock Text="Transmission" Foreground="White" FontSize="15"/>
+                        <ComboBox x:Name="cbTransmissionCar"  DisplayMemberPath="Name" Height="35">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Background" Value="#908282"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+                        <TextBlock Text="Engine" Foreground="White" FontSize="15"/>
+                        <ComboBox x:Name="cbEngineCar" DisplayMemberPath="Name" Height="35">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Background" Value="#908282"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+
+                        <TextBlock Text="Diler" Foreground="White" FontSize="15"/>
+                        <ComboBox x:Name="cbDiler" DisplayMemberPath="Name" Height="35">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="Background" Value="#908282"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
+
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="8,0,0,0">
+                        <TextBlock Text="Price:" Foreground="White" FontSize="15"/>
+                        <TextBox x:Name="txtPrice" Width="160" PreviewTextInput="txtPrice_PreviewTextInput" />
+                        <TextBlock Text="Year" Foreground="White" Margin="0,5,0,0" FontSize="15"/>
+                        <TextBox x:Name="txtDate" MaxLength="4"  Width="160" PreviewTextInput="txtDate_PreviewTextInput" />
+                        <TextBlock Text="Color" Foreground="White" Margin="0,5,0,0" FontSize="15"/>
+                        <TextBox x:Name="txtColor" Width="160"/>
+                        <TextBlock Text="Description" Foreground="White" Margin="0,5,0,0" FontSize="15"/>
+                        <TextBox x:Name="txtDescription" Width="160"/>
+                        <CheckBox x:Name="cbIsNew" Checked="cbIsNew_Checked"  Content="isNew?" Foreground="White" Margin="0,5,0,0" FontSize="15"/>
+                        <Button x:Name="brnAdd" Click="brnAdd_Click" Width="160" Content="Add" Foreground="White" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
+            
         </Grid>
     </Border>
 </Page>
