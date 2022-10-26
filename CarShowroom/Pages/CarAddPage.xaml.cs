@@ -153,24 +153,31 @@ namespace CarShowroom.Pages
 
         private void brnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtColor.Text) || string.IsNullOrWhiteSpace(txtDate.Text) || string.IsNullOrWhiteSpace(txtDescription.Text) || string.IsNullOrEmpty(txtPrice.Text)||
-                cbBodyCar.SelectedIndex == -1 || cbModelCar.SelectedIndex == -1 && cbTransmissionCar.SelectedIndex == -1 || cbEngineCar.SelectedIndex == -1 || cbDiler.SelectedIndex == -1 ||
-                ((BitmapImage)imgUpload1.Source).UriSource == null || ((BitmapImage)imgUpload2.Source).UriSource == null || ((BitmapImage)imgUpload3.Source).UriSource == null || ((BitmapImage)imgUpload4.Source).UriSource == null)
+            try
             {
-                MessageBox.Show("заполните все поля");
+                if (string.IsNullOrWhiteSpace(txtColor.Text) || string.IsNullOrWhiteSpace(txtDate.Text) || string.IsNullOrWhiteSpace(txtDescription.Text) || string.IsNullOrEmpty(txtPrice.Text) ||
+                    cbBodyCar.SelectedIndex == -1 || cbModelCar.SelectedIndex == -1 && cbTransmissionCar.SelectedIndex == -1 || cbEngineCar.SelectedIndex == -1 || cbDiler.SelectedIndex == -1 ||
+                    ((BitmapImage)imgUpload1.Source).UriSource == null || ((BitmapImage)imgUpload2.Source).UriSource == null || ((BitmapImage)imgUpload3.Source).UriSource == null || ((BitmapImage)imgUpload4.Source).UriSource == null)
+                {
+                    MessageBox.Show("заполните все поля");
+                }
+                else
+                {
+                    var selectModel = cbModelCar.SelectedItem as CarModel;
+                    var selectBody = cbBodyCar.SelectedItem as BodyCar;
+                    var selectTransmis = cbTransmissionCar.SelectedItem as Transmission;
+                    var selectEngine = cbEngineCar.SelectedItem as Engine;
+                    var selectDiler = cbDiler.SelectedItem as Diler;
+                    CarDataBaseMethods.AddImageCar(image1, image2, image3, image4, txtDescription.Text);
+                    var getImage = CarDataBaseMethods.GetImages(txtDescription.Text);
+                    CarDataBaseMethods.AddCar(selectModel, selectBody, selectTransmis, IsNew, selectEngine, Convert.ToInt32(txtPrice.Text), selectDiler, getImage.id, txtColor.Text, Convert.ToInt32(txtDate.Text), getImage);
+                }
             }
-            else
+            catch(InvalidCastException)
             {
-                var selectModel = cbModelCar.SelectedItem as CarModel;
-                var selectBody = cbBodyCar.SelectedItem as BodyCar;
-                var selectTransmis = cbTransmissionCar.SelectedItem as Transmission;
-                var selectEngine = cbEngineCar.SelectedItem as Engine;
-                var selectDiler = cbDiler.SelectedItem as Diler;
-                CarDataBaseMethods.AddImageCar(image1, image2, image3, image4, txtDescription.Text);
-                var getImage = CarDataBaseMethods.GetImages(txtDescription.Text);
-                CarDataBaseMethods.AddCar(selectModel, selectBody ,selectTransmis , IsNew, selectEngine,Convert.ToInt32(txtPrice.Text),selectDiler, getImage.id, txtColor.Text, Convert.ToInt32(txtDate.Text), getImage);
+                MessageBox.Show("заполните все поля или исправьте ошибку");
+                return;
             }
-            
         }
         public void BindingData()
         {
