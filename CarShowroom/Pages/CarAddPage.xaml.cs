@@ -17,6 +17,7 @@ using CarShowroom.Data.Classes;
 using Microsoft.Win32;
 using System.IO;
 using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CarShowroom.Pages
 {
@@ -153,7 +154,8 @@ namespace CarShowroom.Pages
         private void brnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtColor.Text) || string.IsNullOrWhiteSpace(txtDate.Text) || string.IsNullOrWhiteSpace(txtDescription.Text) || string.IsNullOrEmpty(txtPrice.Text)||
-                cbBodyCar.SelectedIndex == -1 || cbModelCar.SelectedIndex == -1 && cbTransmissionCar.SelectedIndex == -1 || cbEngineCar.SelectedIndex == -1 || cbDiler.SelectedIndex == -1)
+                cbBodyCar.SelectedIndex == -1 || cbModelCar.SelectedIndex == -1 && cbTransmissionCar.SelectedIndex == -1 || cbEngineCar.SelectedIndex == -1 || cbDiler.SelectedIndex == -1 ||
+                ((BitmapImage)imgUpload1.Source).UriSource == null || ((BitmapImage)imgUpload2.Source).UriSource == null || ((BitmapImage)imgUpload3.Source).UriSource == null || ((BitmapImage)imgUpload4.Source).UriSource == null)
             {
                 MessageBox.Show("заполните все поля");
             }

@@ -43,7 +43,7 @@ namespace CarShowroom.Pages
             txtDiler.Text = "Diler: " + Cars.Cars.Diler.Name;
             txtClient.Text = "Client Name: " + Cars.Client.Name;
             txtClientLogin.Text = "Client Login: " + Cars.Client.Login;
-            this.DataContext = Cars.Cars.ImageCar;
+            itemsControl.ItemsSource = DBConnection.connection.ImageCar.Where(c=>c.Description == Cars.Cars.ImageCar.Description).ToList();
         }
 
 

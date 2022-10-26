@@ -25,9 +25,6 @@ namespace CarShowroom.Pages
     {
         public static Client CurrentClient;
         public static Cars Cars;
-        int listsize = 0;
-        int size;
-        List<byte[]> image;
         public InformationCarPage(Client currentClient, Cars cars)
         {
             CurrentClient = currentClient;
@@ -35,11 +32,6 @@ namespace CarShowroom.Pages
             InitializeComponent();
             BindingDataCars();
             
-        }
-
-        private void imgCar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
        
         public void BindingDataCars()
@@ -54,17 +46,7 @@ namespace CarShowroom.Pages
             txtColor.Text = "Color: " + Cars.Color;
             txtBody.Text = "Body: " + Cars.BodyCar.Name;
             txtDiler.Text = "Diler: " + Cars.Diler.Name;
-            image = new List<byte[]>();
-            
-            foreach (var i in CarDataBaseMethods.GetImages(Cars))
-            {
-                image.Add(i.Image1);
-                image.Add(i.Image2);
-                image.Add(i.Image3);
-                image.Add(i.Image4);
-            }
-            size = image.Count();
-            this.DataContext = Cars.ImageCar;
+            itemsControl.ItemsSource = DBConnection.connection.ImageCar.Where(c => c.Description == Cars.ImageCar.Description).ToList();
         }
 
         private void txtDiler_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
