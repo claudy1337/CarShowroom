@@ -1,0 +1,51 @@
+﻿<Page x:Class="CarShowroom.Pages.OrderCarInformationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarShowroom.Pages"
+      mc:Ignorable="d" 
+      FontFamily="Poppins"
+      d:DesignHeight="400" d:DesignWidth="700"
+      Title="OrderCarInformationPage">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+        </Style>
+    </Page.Resources>
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image Source="{Binding Image1}" Grid.Column="0" Grid.Row="0" Margin="10" x:Name="imgCar" />
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
+                <TextBlock Text="Car Information" HorizontalAlignment="Center" FontSize="25"/>
+                <TextBlock x:Name="txtBrand" Text="Brand: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtModel" Text="Model: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtColor" Text="Color: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtEngine" Text="Engine: " FontSize="20" Margin="0,3,0,0"/>
+
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="5">
+                <TextBlock x:Name="txtTransmission" Text="Transmission: " FontSize="20" Margin="0,6,0,0"/>
+                <TextBlock x:Name="txtBody" Text="Body:" FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtIsNew" Text="Is New: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtYear" Text="Year: " FontSize="20" Margin="0,3,0,0"/>
+                <TextBlock x:Name="txtDiler" Text="Diler: " FontSize="20" Margin="0,3,0,0"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock x:Name="txtPrice" Text="Price: " FontSize="25"/>
+                <TextBlock x:Name="txtClient" Text="Client Name:" FontSize="25"/>
+                <TextBlock x:Name="txtClientLogin" Text="Client Login:" FontSize="25"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Page>

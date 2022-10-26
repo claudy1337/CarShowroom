@@ -33,33 +33,42 @@ namespace CarShowroom.Pages
         public void BindingData()
         {
             DGTransaction.ItemsSource = DBConnection.connection.HistoryTransaction.ToList();
-            cbCar.ItemsSource = DBConnection.connection.Cars.Where(c=>c.isBuy==true).ToList();
+            cbCar.ItemsSource = DBConnection.connection.OrderCar.ToList();
             cbClient.ItemsSource = DBConnection.connection.Client.ToList();
         }
         private void cbClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectClient = cbClient.SelectedItem as Client;
-            var selectCar = cbCar.SelectedItem as Cars;
-            if (cbCar.SelectedIndex == -1)
+            try
             {
-                DGTransaction.ItemsSource = DBConnection.connection.HistoryTransaction.Where(t => t.OrderCar.Client.id == selectClient.id).ToList();
-                
+                cbCar.SelectedIndex = -1;
+                var selectClient = cbClient.SelectedItem as Client; 
+                DGTransaction.ItemsSource = DBConnection.connection.HistoryTransaction.Where(t=>t.OrderCar.Client.id == selectClient.id).ToList();
+               
             }
-            else
+            catch(Exception)
             {
-                DGTransaction.ItemsSource = DBConnection.connection.HistoryTransaction.Where(t => t.OrderCar.Client.id == selectClient.id && t.OrderCar.Cars.id == selectCar.id).ToList();
-            }
-            
+                return;
+            }  
         }
 
         private void cbCar_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            try
+            {
+                cbClient.SelectedIndex = -1;
+                var selectCar = cbCar.SelectedItem as OrderCar;
+                DGTransaction.ItemsSource = DBConnection.connection.HistoryTransaction.Where(t=>t.OrderCar.Cars.id == selectCar.Cars.id).ToList();
+            }
+            catch(Exception)
+            {
+                return;
+            }
         }
 
         private void DGTransaction_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var selectTransaction = DGTransaction.SelectedItem as HistoryTransaction;
+            NavigationService.Navigate(new OrderCarInformationPage(selectTransaction.OrderCar));
         }
     }
 }

@@ -17,17 +17,9 @@ namespace CarShowroom.Data.Classes
         {
             return new ObservableCollection<OrderCar>(DBConnection.connection.OrderCar);
         }
-        public static OrderCar GetOrderCars(Cars cars)
+        public static IEnumerable<OrderCar> GetOrderCarsList(Client client)
         {
-            return GetOrderCar().FirstOrDefault(o=>o.idCar == cars.id);
-        }
-        public static OrderCar GetOrderCars(Cars cars, Client client)
-        {
-            return GetOrderCar().FirstOrDefault(o => o.idCar == cars.id && o.idClient == client.id);
-        }
-        public static IEnumerable<OrderCar> GetOrderCarsList()
-        {
-            return GetOrderCar().ToList();
+            return GetOrderCar().Where(c=>c.idClient == client.id).ToList();
         }
         public static void AddOrderCar(Client client, Cars cars)
         {

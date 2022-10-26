@@ -74,7 +74,7 @@ namespace CarShowroom
         private void clOrderCars_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             clColorSet();
-
+            fContainer.Navigate(new OrderCarPage(CurrentClient));
             clOrderCars.Foreground = Brushes.White;
         }
 

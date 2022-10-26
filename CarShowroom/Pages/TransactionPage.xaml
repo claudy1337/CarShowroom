@@ -40,7 +40,7 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical" VerticalAlignment="Center">
                     <TextBlock Text="Car" FontSize="15"/>
-                    <ComboBox x:Name="cbCar" SelectionChanged="cbCar_SelectionChanged" DisplayMemberPath="CarModel.Name" Height="45">
+                    <ComboBox x:Name="cbCar" SelectionChanged="cbCar_SelectionChanged" DisplayMemberPath="Cars.CarModel.Name" Height="45">
                         <ComboBox.ItemContainerStyle>
                             <Style TargetType="ComboBoxItem">
                                 <Setter Property="BorderBrush" Value="White"/>

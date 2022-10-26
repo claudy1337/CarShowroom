@@ -1,0 +1,65 @@
+﻿<Page x:Class="CarShowroom.Pages.OrderCarPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarShowroom.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="700"
+      Title="OrderCarPage"
+      xmlns:material="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Poppins"/>
+        </Style>
+    </Page.Resources>
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="225"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:Card  x:Name="cardSort" Margin="8" Grid.Column="0">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <TextBlock Foreground="White" Text="Client" FontSize="22"/>
+                <ComboBox SelectionChanged="cbClient_SelectionChanged" x:Name="cbClient" DisplayMemberPath="Login" Height="40">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="Background" Value="#908282"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+                <TextBlock x:Name="txtClear" MouseLeftButtonDown="txtClear_MouseLeftButtonDown" Text="Clear" FontSize="15" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </materialDesign:Card>
+        <ListView x:Name="ldtvOrderCar" SelectionChanged="ldtvOrderCar_SelectionChanged" Grid.Column="1" Width="450" Height="380">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="425">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="250"/>
+                            <RowDefinition Height="100"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+                            <Grid Height="250" Width="420">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Cars.ImageCar.Image1}" Grid.Column="0" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <Image Source="{Binding Cars.ImageCar.Image2}" Grid.Column="1" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                            <TextBlock Foreground="White" Text="{Binding Cars.CarModel.Name}" FontSize="25"/>
+                            <TextBlock Foreground="White" Text="{Binding Cars.CarModel.BrandCar.Name}" FontSize="25"/>
+                            <TextBlock Foreground="White" Text="{Binding Client.Name}" FontSize="25"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

@@ -152,6 +152,12 @@
     <Compile Include="Pages\InformationCarPage.xaml.cs">
       <DependentUpon>InformationCarPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderCarInformationPage.xaml.cs">
+      <DependentUpon>OrderCarInformationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderCarPage.xaml.cs">
+      <DependentUpon>OrderCarPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TransactionPage.xaml.cs">
       <DependentUpon>TransactionPage.xaml</DependentUpon>
     </Compile>
@@ -195,6 +201,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\InformationCarPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrderCarInformationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrderCarPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CarShowroom.Data.Classes;
 using CarShowroom.Data.Model;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CarShowroom.Pages
 {
@@ -39,7 +40,6 @@ namespace CarShowroom.Pages
         private void imgCar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-           
         }
        
         public void BindingDataCars()
@@ -75,6 +75,7 @@ namespace CarShowroom.Pages
         private void btnBuy_Click(object sender, RoutedEventArgs e)
         {
             OrderCarDataBaseMethods.AddOrderCar(CurrentClient, Cars);
+            NavigationService.Navigate(new CarShowRoom(CurrentClient));
         }
 
         private void btnBack_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
